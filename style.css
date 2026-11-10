@@ -1,0 +1,93 @@
+@font-face {
+    font-family: "lato";
+    src: url("Resources/Font/Lato-Regular.ttf");
+}
+
+@font-face {
+    font-family: "latoBold";
+    src: url("Resources/Font/Lato-Bold.ttf");
+}
+
+@font-face {
+    font-family: "latoItalic";
+    src: url("Resources/Font/Lato-Italic.ttf");
+}
+
+* {
+    font-family: "lato";
+    font-size: 15px;
+}
+
+h2 {
+    font-family: "latoBold";
+    font-size: 24px;
+}
+
+button {
+    font-family: "latoBold";
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.body {
+    background-image: url("Resources/Img/SignInBackgroundImg1.png");
+    overflow-x: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+    font-family: "latoItalic";
+    cursor: pointer;
+    text-decoration: none;
+    color: green;
+}
+
+.signIn_Box {
+    width: 350px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+    justify-content: center;
+    align-items: center;
+}
+
+.signInImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signUp_Box {
+    width: 550px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgb(250, 250, 250);
+    align-items: center;
+    justify-content: center;
+}
+
+.adminsignInBody {
+    background-image: url("Resources/Img/background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.adminSignIn_Box {
+    width: 380px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 30px 0px rgb(13, 13, 13);
+}
+
+.adminBody {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
