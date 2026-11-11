@@ -278,40 +278,39 @@ function searchProduct(x) {
 
 function viewFilter() {
 
-    // var signInBox = document.getElementById("signInBox");
-    // var signUpBox = document.getElementById("signUpBox");
-
-    // signInBox.classList.toggle("d-none");
-    // signUpBox.classList.toggle("d-none");
-
     var filterBlock = document.getElementById("filterId");
     var carousel = document.getElementById("carouselExampleIndicators");
+    var basicSearchBox = document.getElementById("bsb");
 
     if (filterBlock.className == "d-none") {
         filterBlock.className = "d-block";
         carousel.className = "d-none";
+        basicSearchBox.className = "d-none";
     } else {
         filterBlock.className = "d-none";
         carousel.className = "col-9 mx-auto shadow-sm carousel carousel-dark slide mt-3 mb-3";
+        basicSearchBox.className = "container d-flex justify-content-center mt-3";
     }
 }
 
 function advSearchProduct(x) {
 
     var page = x;
+    var searchText = document.getElementById("text");
     var category = document.getElementById("category");
     var brand = document.getElementById("brand");
-    var dietarypref = document.getElementById("dietarypref");
-    var packagingtype = document.getElementById("packagingtype");
+    var availability = document.getElementById("availability");
+    var sort = document.getElementById("sort");
     var min = document.getElementById("min");
     var max = document.getElementById("max");
 
     var f = new FormData();
     f.append("pg", page);
+    f.append("text", searchText.value);
     f.append("cat", category.value);
     f.append("b", brand.value);
-    f.append("dpref", dietarypref.value);
-    f.append("ptype", packagingtype.value);
+    f.append("avb", availability.value);
+    f.append("sort", sort.value);
     f.append("min", min.value);
     f.append("max", max.value);
 

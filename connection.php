@@ -9,7 +9,7 @@ class Database
     {
 
         if (!isset(Database::$connection)) {
-            Database::$connection = new mysqli("127.0.0.1", "root", "Mysql@2003", "supermarket", "3306");
+            Database::$connection = new mysqli("127.0.0.1", "root", "Mysql@2003", "supermarket_db", "3306");
         }
     }
 

@@ -23,7 +23,7 @@ require "connection.php";
     <!-- header  -->
 
     <!-- basic search  -->
-    <div class="container d-flex justify-content-center mt-3">
+    <div class="container d-flex justify-content-center mt-3" id="bsb">
         <div class="col-8 mt-3">
             <input type="text" class="form-control border-2 border-success rounded-pill shadow-lg" placeholder="Search..." onkeyup="searchProduct(0);" id="product">
         </div>
@@ -36,9 +36,18 @@ require "connection.php";
         <div class="border border-2 border-success rounded-4 mt-4 p-5 col-10 offset-1">
             <div class="row col-12">
 
+                <!-- Advanced Search Box  -->
+                <div class="container d-flex justify-content-center mt-3">
+                    <div class="col-8 mt-3">
+                        <input type="text" class="form-control border-2 border-success rounded-pill shadow-lg" placeholder="Search..." id="text">
+                    </div>
+                    <button class="btn btn-danger border rounded-pill col-1 mt-3 ms-2 shadow-lg" onclick="viewFilter();">Go Back</button>
+                </div>
+                <!-- Advanced Search Box  -->
+
                 <!-- Category  -->
                 <div class="col-6 ms-auto">
-                    <label for="color-select" class="form-label fw-bold">Category</label>
+                    <label for="category" class="form-label fw-bold">Category</label>
                     <select name="color" class="form-select" id="category">
                         <option value="0">Select Category</option>
 
@@ -61,7 +70,7 @@ require "connection.php";
 
                 <!-- Brand  -->
                 <div class="col-6 ms-auto">
-                    <label for="color-select" class="form-label fw-bold">Brand</label>
+                    <label for="brand" class="form-label fw-bold">Brand</label>
                     <select name="color" class="form-select" id="brand">
                         <option value="0">Select Brand</option>
 
@@ -85,51 +94,29 @@ require "connection.php";
 
             <div class="row col-12 mt-3">
 
-                <!-- Dietary Preference  -->
+                <!-- Availability  -->
                 <div class="col-6 ms-auto">
-                    <label for="color-select" class="form-label fw-bold">Dietary Preference</label>
-                    <select name="color" class="form-select" id="dietarypref">
-                        <option value="0">Select Dietary Preference</option>
-
-
-                        <?php
-                        $rs3 = Database::search("SELECT * FROM `dietary_pref`");
-                        $num3 = $rs3->num_rows;
-                        for ($i = 0; $i < $num3; $i++) {
-                            $d3 = $rs3->fetch_assoc();
-                        ?>
-
-                            <option value="<?php echo $d3['id']; ?>"><?php echo $d3['name']; ?></option>
-                        <?php
-                        }
-                        ?>
+                    <label for="availability" class="form-label fw-bold">Availability</label>
+                    <select name="color" class="form-select" id="availability">
+                        <option value="0">All</option>
+                        <option value="1">In Stock only</option>
 
                     </select>
                 </div>
-                <!-- Dietary Preference  -->
+                <!-- Availability  -->
 
-                <!-- Packaging Type  -->
+                <!-- Sort  -->
                 <div class="col-6 ms-auto">
-                    <label for="color-select" class="form-label fw-bold">Packaging Type</label>
-                    <select name="color" class="form-select" id="packagingtype">
-                        <option value="0">Select Packaging Type</option>
-
-
-                        <?php
-                        $rs4 = Database::search("SELECT * FROM `packaging_type`");
-                        $num4 = $rs4->num_rows;
-                        for ($i = 0; $i < $num4; $i++) {
-                            $d4 = $rs4->fetch_assoc();
-                        ?>
-
-                            <option value="<?php echo $d4['id']; ?>"><?php echo $d4['name']; ?></option>
-                        <?php
-                        }
-                        ?>
-
+                    <label for="sort" class="form-label fw-bold">Sort By</label>
+                    <select name="color" class="form-select" id="sort">
+                        <option value="0">None</option>
+                        <option value="1">Price: Low to High</option>
+                        <option value="2">Price: High to Low</option>
+                        <option value="3">Quantity: Low to High</option>
+                        <option value="4">Quantity: High to Low</option>
                     </select>
                 </div>
-                <!-- Packaging Type  -->
+                <!-- Sort  -->
 
             </div>
 
