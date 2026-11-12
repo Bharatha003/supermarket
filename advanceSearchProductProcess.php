@@ -147,6 +147,7 @@ if ($num2 == 0) {
 
     <?php
 } else {
+
     for ($i = 0; $i < $num2; $i++) {
         $d = $rs2->fetch_assoc();
     ?>
@@ -154,7 +155,7 @@ if ($num2 == 0) {
         <!-- Card  -->
         <div class="d-flex justify-content-center col-3 mt-3">
             <div class="card border border-2 border-success rounded-4" style="width: 300px">
-                <a href="singleProductView.php?s=<?php echo $d["product_id"] ?>"><img src="<?php echo $d["product_img_path"]; ?>" class="card-img-top mt-2" alt="..."></a>
+                <a href="singleProductView.php?s=<?php echo $d["product_id"] ?>"><img src="<?php echo $d["product_img_path"]; ?>" class="card-img-top mt-2" alt="<?php echo $d["product_name"]; ?>"></a>
                 <div class="card-body">
                     <h5 class="card-title fw-bold fs-4"><?php echo $d["product_name"]; ?></h5>
                     <p class="badge rounded-pill border border-dark text-dark fs-6"><?php echo $d["category_name"]; ?></p>

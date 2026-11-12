@@ -218,35 +218,11 @@ function signOut() {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
             alert(response);
-            // window.location.reload();
             window.location = "signin.php";
         }
     };
     request.open("GET", "signOutProcess.php", true);
     request.send();
-}
-
-function loadProduct(x) {
-
-    var page = x;
-
-    var f = new FormData();
-    f.append("p", page);
-
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 & request.status == 200) {
-            var response = request.responseText;
-            document.getElementById("pid").innerHTML = response;
-
-        }
-    };
-
-
-    request.open("POST", "loadProductProcess.php", true);
-    request.send(f);
-
 }
 
 function searchProduct(x) {
@@ -344,6 +320,29 @@ function advSearchProduct(x) {
         }
     };
     request.open("POST", "advanceSearchProductProcess.php", true);
+    request.send(f);
+
+}
+
+function loadProduct(x) {
+
+    var page = x;
+
+    var f = new FormData();
+    f.append("p", page);
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 & request.status == 200) {
+            var response = request.responseText;
+            document.getElementById("pid").innerHTML = response;
+
+        }
+    };
+
+
+    request.open("POST", "loadProductProcess.php", true);
     request.send(f);
 
 }

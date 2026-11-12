@@ -1,0 +1,120 @@
+<?php
+
+include "connection.php";
+
+$pageno = 0;
+$page = $_POST["p"];
+
+if (0 != $page) {
+    $pageno = ($pageno = $page);
+} else {
+    $pageno = 1;
+}
+
+$q = "SELECT stock.*, 
+product.id as product_id,
+product.name as product_name,
+product.img_path AS product_img_path, 
+category.name as category_name 
+FROM `stock` 
+INNER JOIN `product` ON `stock`.`product_id` = `product`.`id` 
+INNER JOIN `category` ON `product`.`category_id` = `category`.`id` ORDER BY `stock`.`id` ASC";
+
+$rs = Database::search($q);
+$num = $rs->num_rows;
+
+$results_per_page = 8;
+$num_of_pages = ceil($num / $results_per_page);
+
+$page_results = ($pageno - 1) * $results_per_page;
+
+$q2 = $q . " LIMIT $results_per_page OFFSET $page_results";
+$rs2 = Database::search($q2);
+$num2 = $rs2->num_rows;
+
+if ($num2 == 0) {
+?>
+
+    <!--Empty Products Message-->
+    <div class="alert alert-danger border border-danger d-flex flex-column justify-content-center align-items-center rounded-4 mt-3" role="alert">
+        <h5><i class="bi bi-exclamation-circle fs-5"></i> No Products Available.</h5>
+        <p>We're Sorry, We cannot find any products at the moment...</p>
+    </div>
+    <!--Empty Products Message-->
+
+    <?php
+} else {
+
+    for ($i = 0; $i < $num2; $i++) {
+        $d = $rs2->fetch_assoc();
+    ?>
+
+        <!-- Card  -->
+        <div class="d-flex justify-content-center col-3 mt-3">
+            <div class="card border border-2 border-success rounded-4" style="width: 300px">
+                <a href="singleProductView.php?s=<?php echo $d["product_id"] ?>"><img src="<?php echo $d["product_img_path"]; ?>" class="card-img-top mt-2" alt="<?php echo $d["product_name"]; ?>"></a>
+                <div class="card-body">
+                    <h5 class="card-title fw-bold fs-4"><?php echo $d["product_name"]; ?></h5>
+                    <p class="badge rounded-pill border border-dark text-dark fs-6"><?php echo $d["category_name"]; ?></p>
+                    <p class="card-text fs-5">Rs.<?php echo $d["price"]; ?>.00</p>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-dark col-6">Add to Cart</button>
+                        <button class="btn btn-success col-6 ms-2">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Card  -->
+
+    <?php
+    }
+    ?>
+
+    <!-- pagination  -->
+    <div class="d-flex justify-content-center mt-5">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link border-dark text-dark fw-bold" <?php
+
+                                                                                            if ($pageno <= 1) {
+                                                                                                echo ("#");
+                                                                                            } else {
+                                                                                            ?>onclick="loadProduct(<?php echo ($pageno - 1) ?>);" <?php
+                                                                                                                                                }
+                                                                                                                                                    ?>>◀</a></li>
+
+                <?php
+                for ($y = 1; $y <= $num_of_pages; $y++) {
+                    if ($y == $pageno) {
+                ?>
+                        <li class="page-item active">
+                            <a class="page-link bg-dark border-dark text-light fw-bold" onclick="loadProduct(<?php echo ($y) ?>);"><?php echo ($y) ?></a>
+                        </li>
+                    <?php
+
+                    } else {
+                    ?>
+                        <li class="page-item">
+                            <a class="page-link border-dark text-dark fw-bold" onclick="loadProduct(<?php echo ($y) ?>);"><?php echo ($y) ?></a>
+                        </li>
+                <?php
+                    }
+                }
+
+                ?>
+
+                <li class="page-item"><a class="page-link border-dark text-dark fw-bold" <?php
+
+                                                                                            if ($pageno >= $num_of_pages) {
+                                                                                                echo ("#");
+                                                                                            } else {
+                                                                                            ?>onclick="loadProduct(<?php echo ($pageno + 1) ?>);" <?php
+                                                                                                                                                }
+                                                                                                                                                    ?>>▶</a></li>
+            </ul>
+        </nav>
+    </div>
+
+<?php
+}
+?>
