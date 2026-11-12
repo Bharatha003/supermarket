@@ -293,6 +293,28 @@ function viewFilter() {
     }
 }
 
+function clearFilter() {
+
+    var searchText = document.getElementById("text");
+    var category = document.getElementById("category");
+    var brand = document.getElementById("brand");
+    var availability = document.getElementById("availability");
+    var sort = document.getElementById("sort");
+    var min = document.getElementById("min");
+    var max = document.getElementById("max");
+    var resultBox = document.getElementById("pid");
+
+    searchText.value = "";
+    category.value = "0";
+    brand.value = "0";
+    availability.value = "0";
+    sort.value = "0";
+    min.value = "";
+    max.value = "";
+    resultBox.innerHTML = "";
+
+}
+
 function advSearchProduct(x) {
 
     var page = x;
@@ -318,16 +340,13 @@ function advSearchProduct(x) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 & request.status == 200) {
             var response = request.responseText;
-            // alert(response);
             document.getElementById("pid").innerHTML = response;
-
         }
     };
     request.open("POST", "advanceSearchProductProcess.php", true);
     request.send(f);
 
 }
-
 
 function adminSignIn() {
 

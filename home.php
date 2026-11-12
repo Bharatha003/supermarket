@@ -41,7 +41,7 @@ require "connection.php";
                     <div class="col-8 mt-3">
                         <input type="text" class="form-control border-2 border-success rounded-pill shadow-lg" placeholder="Search..." id="text">
                     </div>
-                    <button class="btn btn-danger border rounded-pill col-1 mt-3 ms-2 shadow-lg" onclick="viewFilter();">Go Back</button>
+                    <button class="btn btn-success border rounded-pill col-1 mt-3 ms-2 shadow-lg" onclick="advSearchProduct(0);">Search</button>
                 </div>
                 <!-- Advanced Search Box  -->
 
@@ -123,20 +123,22 @@ require "connection.php";
             <div class="mt-4 row col-12">
 
                 <!-- Min Price  -->
-                <div class="col-5">
-                    <input type="text" class="form-control" placeholder="Min Price" id="min" />
+                <div class="col-6">
+                    <input type="number" class="form-control" placeholder="Min Price" id="min" />
                 </div>
                 <!-- Min Price  -->
 
                 <!-- Max Price  -->
-                <div class="col-5">
-                    <input type="text" class="form-control" placeholder="Max Price" id="max" />
+                <div class="col-6">
+                    <input type="number" class="form-control" placeholder="Max Price" id="max" />
                 </div>
                 <!-- Max Price  -->
 
-                <button class="btn btn-success border rounded-pill col-2" onclick="advSearchProduct(0);">Search</button>
+            </div>
 
-
+            <div class="row col-12 mt-3 justify-content-center">
+                <button class="btn btn-dark border rounded-pill col-5" onclick="viewFilter(); clearFilter();">Go Back</button>
+                <button class="btn btn-danger border rounded-pill col-5 ms-4" onclick="clearFilter();">Clear</button>
             </div>
 
         </div>
@@ -178,7 +180,7 @@ require "connection.php";
     <!--carousel-->
 
     <!-- load product  -->
-    <div class="row col-10 offset-1" id="pid">
+    <div class="row col-11 mx-auto" id="pid">
 
     </div>
     <!-- load product  -->
