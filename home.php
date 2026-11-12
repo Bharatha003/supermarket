@@ -25,7 +25,7 @@ require "connection.php";
     <!-- basic search  -->
     <div class="container d-flex justify-content-center mt-3" id="bsb">
         <div class="col-8 mt-3">
-            <input type="text" class="form-control border-2 border-success rounded-pill shadow-lg" placeholder="Search..." onkeyup="searchProduct(0);" id="product">
+            <input type="text" class="form-control border-2 border-success rounded-pill shadow-lg" placeholder="Search..." onkeyup="clearFilter(); searchProduct(0);" id="product">
         </div>
         <button class="btn btn-danger border rounded-pill col-1 mt-3 ms-2 shadow-lg" onclick="viewFilter(); clearFilter();">Filter</button>
     </div>

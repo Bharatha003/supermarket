@@ -225,32 +225,6 @@ function signOut() {
     request.send();
 }
 
-function searchProduct(x) {
-
-
-    var page = x;
-
-    var product = document.getElementById("product");
-
-    // alert(page);
-    // alert(product.value);
-
-    var f = new FormData();
-    f.append("p", product.value);
-    f.append("pg", page);
-
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
-        if (request.readyState == 4 & request.status == 200) {
-            var response = request.responseText;
-            // alert(response);
-            document.getElementById("pid").innerHTML = response;
-        }
-    };
-    request.open("POST", "searchProductProcess.php", true);
-    request.send(f);
-}
-
 
 function viewFilter() {
 
@@ -301,6 +275,7 @@ function advSearchProduct(x) {
     var sort = document.getElementById("sort");
     var min = document.getElementById("min");
     var max = document.getElementById("max");
+    var resultBox = document.getElementById("pid");
 
     var f = new FormData();
     f.append("pg", page);
@@ -316,7 +291,7 @@ function advSearchProduct(x) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 & request.status == 200) {
             var response = request.responseText;
-            document.getElementById("pid").innerHTML = response;
+            resultBox.innerHTML = response;
         }
     };
     request.open("POST", "advanceSearchProductProcess.php", true);
@@ -327,6 +302,7 @@ function advSearchProduct(x) {
 function loadProduct(x) {
 
     var page = x;
+    var resultBox = document.getElementById("pid");
 
     var f = new FormData();
     f.append("p", page);
@@ -336,7 +312,7 @@ function loadProduct(x) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 & request.status == 200) {
             var response = request.responseText;
-            document.getElementById("pid").innerHTML = response;
+            resultBox.innerHTML = response;
 
         }
     };
@@ -345,6 +321,35 @@ function loadProduct(x) {
     request.open("POST", "loadProductProcess.php", true);
     request.send(f);
 
+}
+
+function searchProduct(x) {
+
+    var page = x;
+    var product = document.getElementById("product");
+    var resultBox = document.getElementById("pid");
+    var carousel = document.getElementById("carouselExampleIndicators");
+
+    if (product.value != "") {
+        carousel.className = "d-none";
+    } else {
+        carousel.className = "col-9 mx-auto shadow-sm carousel carousel-dark slide mt-3 mb-3";
+        loadProduct(0);
+    }
+
+    var f = new FormData();
+    f.append("p", product.value);
+    f.append("pg", page);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 & request.status == 200) {
+            var response = request.responseText;
+            resultBox.innerHTML = response;
+        }
+    };
+    request.open("POST", "searchProductProcess.php", true);
+    request.send(f);
 }
 
 function adminSignIn() {

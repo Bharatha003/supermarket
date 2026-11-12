@@ -70,7 +70,7 @@ if ($num2 == 0) {
     }
     ?>
 
-    <!-- pagination  -->
+    <!-- Pagination  -->
     <div class="d-flex justify-content-center mt-5">
         <nav aria-label="Page navigation example">
             <ul class="pagination">
@@ -114,6 +114,7 @@ if ($num2 == 0) {
             </ul>
         </nav>
     </div>
+    <!-- Pagination  -->
 
 <?php
 }
