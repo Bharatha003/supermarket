@@ -100,17 +100,17 @@ function signIn() {
 
 function showPasswordSignIn() {
 
-    var sp = document.getElementById("pw");
-    var spb = document.getElementById("spbsi");
+    var password = document.getElementById("pw");
+    var icon = document.getElementById("spbsi");
 
-    if (sp.type == "password") {
-        sp.type = "text";
-        spb.className = "col-1 bg-danger text-white border border-secondary mt-4 rounded-3";
-        spb.innerHTML = '<i class="bi bi-eye-slash-fill"></i>';
+    if (password.type == "password") {
+        password.type = "text";
+        icon.className = "col-1 bg-danger text-white border border-secondary mt-4 rounded-3";
+        icon.innerHTML = '<i class="bi bi-eye-slash-fill"></i>';
     } else {
-        sp.type = "password";
-        spb.className = "col-1 bg-success text-white border border-secondary mt-4 rounded-3";
-        spb.innerHTML = '<i class="bi bi-eye-fill"></i>';
+        password.type = "password";
+        icon.className = "col-1 bg-success text-white border border-secondary mt-4 rounded-3";
+        icon.innerHTML = '<i class="bi bi-eye-fill"></i>';
     }
 
 }
@@ -223,6 +223,7 @@ function signOut() {
     };
     request.open("GET", "signOutProcess.php", true);
     request.send();
+
 }
 
 
@@ -241,6 +242,7 @@ function viewFilter() {
         carousel.className = "col-9 mx-auto shadow-sm carousel carousel-dark slide mt-3 mb-3";
         basicSearchBox.className = "container d-flex justify-content-center mt-3";
     }
+
 }
 
 function clearFilter() {
@@ -317,7 +319,6 @@ function loadProduct(x) {
         }
     };
 
-
     request.open("POST", "loadProductProcess.php", true);
     request.send(f);
 
@@ -348,18 +349,22 @@ function searchProduct(x) {
             resultBox.innerHTML = response;
         }
     };
+
     request.open("POST", "searchProductProcess.php", true);
     request.send(f);
+
 }
 
 function adminSignIn() {
 
-    var un = document.getElementById("un");
-    var pw = document.getElementById("pw");
+    var adminUn = document.getElementById("adminUn");
+    var adminPw = document.getElementById("adminPw");
+    var messageText = document.getElementById("msg3");
+    var messageDiv = document.getElementById("msgDiv3");
 
     var f = new FormData();
-    f.append("u", un.value);
-    f.append("p", pw.value);
+    f.append("au", adminUn.value);
+    f.append("ap", adminPw.value);
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
@@ -368,8 +373,8 @@ function adminSignIn() {
             if (response == "Success") {
                 window.location = "adminDashboard.php";
             } else {
-                document.getElementById("msg").innerHTML = response;
-                document.getElementById("msgDiv").className = "d-block";
+                messageText.innerHTML = response;
+                messageDiv.className = "d-block";
             }
         }
     };
@@ -378,3 +383,23 @@ function adminSignIn() {
     request.send(f);
 
 }
+
+function showPasswordAdminSignIn() {
+
+    var password = document.getElementById("adminPw");
+    var icon = document.getElementById("spbasi");
+
+    if (password.type == "password") {
+        password.type = "text";
+        icon.className = "col-1 bg-danger text-white border border-secondary mt-4 rounded-3";
+        icon.innerHTML = '<i class="bi bi-eye-slash-fill"></i>';
+    } else {
+        password.type = "password";
+        icon.className = "col-1 bg-success text-white border border-secondary mt-4 rounded-3";
+        icon.innerHTML = '<i class="bi bi-eye-fill"></i>';
+    }
+
+}
+
+
+

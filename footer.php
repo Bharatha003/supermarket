@@ -21,10 +21,11 @@
                             style="height: 40px; width: 40px;" alt=""> Supermarket</h3>
                     <hr class="col-3">
                     <p style="font-family: latoItalic;">
-                        Discover and buy your favorite plants with ease on our store.
-                        Browse a wide selection of healthy, vibrant plants, get expert care tips, and enjoy
-                        seamless delivery right to your doorstep. Transform your space with our diverse collection,
-                        perfect for both novice gardeners and plant enthusiasts.
+                        Shop smarter and faster with the Supermarket online store. Browse our complete
+                        aisle-by-aisle catalog of fresh produce, pantry staples, and household essentials
+                        right from your device. Enjoy real-time stock updates, exclusive daily deals,
+                        effortless one-click checkout, and fast doorstep delivery—bringing the entire
+                        Supermarket shopping experience straight to your home.
                     </p>
                 </div>
 

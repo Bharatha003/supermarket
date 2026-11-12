@@ -1,12 +1,11 @@
 <?php
 
 session_start();
+
 include "connection.php";
 
-$username = $_POST["u"];
-$password = $_POST["p"];
-
-// echo($username);
+$username = $_POST["au"];
+$password = $_POST["ap"];
 
 if (empty($username)) {
     echo ("Please Enter Your Username");
@@ -23,12 +22,10 @@ if (empty($username)) {
 
         if ($d["user_type_id"] == 1) {
             echo ("Success");
-
             $_SESSION["a"] = $d;
         } else {
-            echo ("You Don't have an Admin Account");
+            echo ("You Don't have Access to Admin Dashboard");
         }
-        
     } else {
         echo ("Invalid Username OR Password");
     }
