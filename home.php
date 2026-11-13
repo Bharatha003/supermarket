@@ -18,18 +18,18 @@ require "connection.php";
 
 <body class="body" onload="loadProduct(0);">
 
-    <!-- header -->
+    <!-- Header -->
     <?php include "header.php"; ?>
-    <!-- header  -->
+    <!-- Header  -->
 
-    <!-- basic search  -->
+    <!-- Basic Search  -->
     <div class="container d-flex justify-content-center mt-3" id="bsb">
         <div class="col-8 mt-3">
             <input type="text" class="form-control border-2 border-success rounded-pill shadow-lg" placeholder="Search..." onkeyup="clearFilter(); searchProduct(0);" id="product">
         </div>
         <button class="btn btn-danger border rounded-pill col-1 mt-3 ms-2 shadow-lg" onclick="viewFilter(); clearFilter();">Filter</button>
     </div>
-    <!-- basic search  -->
+    <!-- Basic Search  -->
 
     <!-- Advance Search  -->
     <div class="d-none" id="filterId">

@@ -355,6 +355,64 @@ function searchProduct(x) {
 
 }
 
+function uploadProfileImg() {
+
+    var img = document.getElementById("imgUploader");
+
+    var f = new FormData();
+    f.append("pimg", img.files[0]);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 & request.status == 200) {
+            var response = request.responseText;
+            if (response == "empty") {
+                alert("Please select Your Profile Image!");
+            } else {
+                document.getElementById("pimg").src = response;
+                console.log(response);
+                img.value = "";
+            }
+        }
+    };
+    request.open("POST", "profileImgUploadProcess.php", true);
+    request.send(f);
+
+}
+
+function updateProfileData() {
+
+    var fname = document.getElementById("fname");
+    var lname = document.getElementById("lname");
+    var email = document.getElementById("email");
+    var mobile = document.getElementById("mobile");
+    var password = document.getElementById("password");
+    var line1 = document.getElementById("line1");
+    var line2 = document.getElementById("line2");
+
+    var f = new FormData();
+    f.append("f", fname.value);
+    f.append("l", lname.value);
+    f.append("e", email.value);
+    f.append("m", mobile.value);
+    f.append("p", password.value);
+    f.append("l1", line1.value);
+    f.append("l2", line2.value);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 & request.status == 200) {
+            var response = request.responseText;
+            alert(response);
+            location.reload();
+        }
+    };
+
+    request.open("POST", "profileDataUpdateProcess.php", true);
+    request.send(f);
+
+}
+
 function adminSignIn() {
 
     var adminUn = document.getElementById("adminUn");
