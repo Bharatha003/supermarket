@@ -48,11 +48,11 @@ if (empty($fname)) {
 } else {
 
     Database::iud("UPDATE `user` SET `fname` ='" . $fname . "',`lname` ='" . $lname . "',`email` ='" . $email . "',`mobile` ='" . $mobile . "',
-    `password` ='" . $password . "',`line_1` ='" . $line1 . "',`line_2` ='" . $line2 . "' WHERE `id` = '" . $user["id"] . "'");
+    `password` ='" . $password . "',`line1` ='" . $line1 . "',`line2` ='" . $line2 . "' WHERE `id` = '" . $user["id"] . "'");
 
     $rs = Database::search("SELECT * FROM `user` WHERE `id` = '" . $user["id"] . "'");
     $d = $rs->fetch_assoc();
 
     $_SESSION["u"] = $d;
-    echo ("Success");
+    echo ("Profile Data Updated Successfully...");
 }

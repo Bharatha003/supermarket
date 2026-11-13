@@ -73,10 +73,18 @@ if (isset($_SESSION["u"])) {
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" placeholder="Username" value="<?php echo isset($d["username"]) ? $d["username"] : ''; ?>" disabled />
                         </div>
-                        <div class="col-6">
+
+                        <div class="col-5">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" placeholder="Password" value="<?php echo isset($d["password"]) ? $d["password"] : ''; ?>" id="password" />
                         </div>
+
+                        <div class="col-1 mt-2">
+                            <button class="bg-success text-white border border-secondary mt-4 rounded-3 px-2 py-1" id="spbp" onclick="showPasswordProfile();">
+                                <i class="bi bi-eye-fill"></i>
+                            </button>
+                        </div>
+
 
                         <h4 class="mt-4 fw-bold">Shipping Address</h4>
 

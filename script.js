@@ -413,6 +413,23 @@ function updateProfileData() {
 
 }
 
+function showPasswordProfile() {
+
+    var password = document.getElementById("password");
+    var icon = document.getElementById("spbp");
+
+    if (password.type == "password") {
+        password.type = "text";
+        icon.className = "bg-danger text-white border border-secondary mt-4 rounded-3 px-2 py-1";
+        icon.innerHTML = '<i class="bi bi-eye-slash-fill"></i>';
+    } else {
+        password.type = "password";
+        icon.className = "bg-success text-white border border-secondary mt-4 rounded-3 px-2 py-1";
+        icon.innerHTML = '<i class="bi bi-eye-fill"></i>';
+    }
+
+}
+
 function adminSignIn() {
 
     var adminUn = document.getElementById("adminUn");
