@@ -80,7 +80,7 @@ if (isset($_SESSION["u"])) {
                         </div>
 
                         <div class="col-1 mt-2">
-                            <button class="bg-success text-white border border-secondary mt-4 rounded-3 px-2 py-1" id="spbp" onclick="showPasswordProfile();">
+                            <button class="bg-success text-white border border-secondary mt-4 rounded-3 px-1 py-1" id="spbp" onclick="showPasswordProfile();">
                                 <i class="bi bi-eye-fill"></i>
                             </button>
                         </div>
