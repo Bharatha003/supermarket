@@ -430,6 +430,48 @@ function showPasswordProfile() {
 
 }
 
+function decreaseQty() {
+
+    var input = document.getElementById("qty");
+
+    if (input.value > 1) {
+        var new_value = parseInt(input.value) - 1;
+        input.value = new_value;
+    } else {
+        alert("You have reached to the Minimum Quantity...");
+        input.value = 1;
+    }
+
+}
+
+function increaseQty(qty) {
+
+    var input = document.getElementById("qty");
+
+    if (input.value < qty) {
+        var new_value = parseInt(input.value) + 1;
+        input.value = new_value;
+    } else {
+        alert("You have reached to the Maximum Quantity...");
+        input.value = qty;
+    }
+
+}
+
+function checkQtyInput(qty) {
+
+    var input = document.getElementById("qty");
+
+    if (input.value < 1 || input.value == "") {
+        alert("You must add 1 or more...");
+        input.value = 1;
+    } else if (input.value > qty) {
+        alert("Insufficiant quantity...");
+        input.value = qty;
+    }
+
+}
+
 function adminSignIn() {
 
     var adminUn = document.getElementById("adminUn");
