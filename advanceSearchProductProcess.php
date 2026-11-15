@@ -21,10 +21,11 @@ if (0 != $page) {
 }
 
 $q = "SELECT stock.*, 
-product.id as product_id,
-product.name as product_name,
+stock.id AS stock_id, 
+product.id AS product_id,
+product.name AS product_name,
 product.img_path AS product_img_path, 
-category.name as category_name 
+category.name AS category_name 
 FROM `stock` 
 INNER JOIN `product` ON `stock`.`product_id` = `product`.`id`
 INNER JOIN `category` ON `product`.`category_id` = `category`.`id`";
@@ -32,22 +33,23 @@ INNER JOIN `category` ON `product`.`category_id` = `category`.`id`";
 // Search by Search Text
 if (!empty($search)) {
     $q .= " WHERE `product`.`name` LIKE '%" . $search . "%'";
+    $status = 1;
 }
 
 // Search by Category 
 if ($status == 0 && $category != 0) {
-    $q .= "WHERE `product`.`category_id` = '" . $category . "' ";
+    $q .= "WHERE `product`.`category_id` = '" . $category . "'";
     $status = 1;
 } elseif ($status != 0 && $category  != 0) {
-    $q .= "AND `product`.`category_id` = '" . $category . "' ";
+    $q .= "AND `product`.`category_id` = '" . $category . "'";
 }
 
 //search by Brand
 if ($status == 0 && $brand != 0) {
-    $q .= "WHERE `product`.`brand_id` = '" . $brand . "' ";
+    $q .= "WHERE `product`.`brand_id` = '" . $brand . "'";
     $status = 1;
 } elseif ($status != 0 && $brand  != 0) {
-    $q .= "AND `product`.`brand_id` = '" . $brand . "' ";
+    $q .= "AND `product`.`brand_id` = '" . $brand . "'";
 }
 
 //search by Availability
@@ -56,6 +58,36 @@ if ($status == 0 && $availability != 0) {
     $status = 1;
 } elseif ($status != 0 && $availability != 0) {
     $q .= " AND `stock`.`status`='1'";
+}
+
+//search by Min Price
+if (!empty($minPrice) && empty($maxPrice)) {
+    if ($status == 0) {
+        $q .= "WHERE `stock`.`price`>= '" . $minPrice . "'";
+        $status = 1;
+    } else if ($status != 0) {
+        $q .= "AND `stock`.`price`>= '" . $minPrice . "'";
+    }
+}
+
+//search by Max Price
+if (!empty($maxPrice) && empty($minPrice)) {
+    if ($status == 0) {
+        $q .= "WHERE `stock`.`price`<= '" . $maxPrice . "'";
+        $status = 1;
+    } else if ($status != 0) {
+        $q .= "AND `stock`.`price`<= '" . $maxPrice . "'";
+    }
+}
+
+//search by  Price Range
+if (!empty($minPrice) && !empty($maxPrice)) {
+    if ($status == 0) {
+        $q .= "WHERE `stock`.`price` BETWEEN '" . $minPrice . "' AND '" . $maxPrice . "'";
+        $status = 1;
+    } else if ($status != 0) {
+        $q .= "AND `stock`.`price` BETWEEN '" . $minPrice . "' AND '" . $maxPrice . "'";
+    }
 }
 
 //search by Sort
@@ -90,36 +122,6 @@ if ($sort == 1) {
         $status = 1;
     } else if ($status != 0) {
         $q .= " AND `product`.`name` LIKE '%" . $search . "%' ORDER BY `stock`.`qty` DESC";
-    }
-}
-
-//search by Min Price
-if (!empty($minPrice) && empty($maxPrice)) {
-    if ($status == 0) {
-        $q .= "WHERE `stock`.`price`>= '" . $minPrice . "' ORDER BY `stock`.`price` ASC ";
-        $status = 1;
-    } else if ($status != 0) {
-        $q .= "AND `stock`.`price`>= '" . $minPrice . "' ORDER BY `stock`.`price` ASC ";
-    }
-}
-
-//search by Max Price
-if (!empty($maxPrice) && empty($minPrice)) {
-    if ($status == 0) {
-        $q .= "WHERE `stock`.`price`<= '" . $maxPrice . "' ORDER BY `stock`.`price` ASC ";
-        $status = 1;
-    } else if ($status != 0) {
-        $q .= "AND `stock`.`price`<= '" . $maxPrice . "' ORDER BY `stock`.`price` ASC ";
-    }
-}
-
-//search by  Price Range
-if (!empty($minPrice) && !empty($maxPrice)) {
-    if ($status == 0) {
-        $q .= "WHERE `stock`.`price` BETWEEN '" . $minPrice . "' AND '" . $maxPrice . "' ORDER BY `stock`.`price` ASC ";
-        $status = 1;
-    } else if ($status != 0) {
-        $q .= "AND `stock`.`price` BETWEEN '" . $minPrice . "' AND '" . $maxPrice . "' ORDER BY `stock`.`price` ASC ";
     }
 }
 
@@ -161,7 +163,7 @@ if ($num2 == 0) {
                     <p class="badge rounded-pill border border-dark text-dark fs-6"><?php echo $d["category_name"]; ?></p>
                     <p class="card-text fs-5">Rs.<?php echo $d["price"]; ?>.00</p>
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-dark col-6">Add to Cart</button>
+                        <button class="btn btn-dark col-6" onclick="addToCartFromSearch('<?php echo $d['stock_id'] ?>');">Add to Cart</button>
                         <button class="btn btn-success col-6 ms-2">Buy Now</button>
                     </div>
                 </div>

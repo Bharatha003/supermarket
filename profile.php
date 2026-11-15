@@ -122,6 +122,6 @@ if (isset($_SESSION["u"])) {
 
 <?php
 } else {
-    header("location: signIn.php");
+    header("location: signin.php");
 }
 ?>

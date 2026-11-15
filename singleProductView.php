@@ -63,13 +63,13 @@ if (isset($stockId)) {
                     <h4 class="mt-4">Rs.<?php echo $d["price"]; ?>.00</h4>
                     <div class="col-4">
                         <div class="input-group rounded-4 mt-4">
-                            <button class="btn btn-dark" type="button" onclick="decreaseQty();"><i class="bi bi-dash-circle fs-5"></i></button>
+                            <button class="btn btn-dark" type="button" onclick="decreaseQty();"><i class="bi bi-dash-circle fs-6"></i></button>
                             <input type="text" class="form-control border border-dark text-center" value="1" id="qty" onkeyup='checkQtyInput(<?php echo $d["qty"]; ?>)' aria-label="Example text with two button addons">
-                            <button class="btn btn-dark" type="button" onclick='increaseQty(<?php echo $d["qty"]; ?>);'><i class="bi bi-plus-circle fs-5"></i></button>
+                            <button class="btn btn-dark" type="button" onclick='increaseQty(<?php echo $d["qty"]; ?>);'><i class="bi bi-plus-circle fs-6"></i></button>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
-                        <button class="btn btn-dark rounded-pill col-6" onclick="addtoCart('<?php echo $d['stock_id'] ?>');">Add To Cart</button>
+                        <button class="btn btn-dark rounded-pill col-6" onclick="addToCart('<?php echo $d['stock_id'] ?>');">Add To Cart</button>
                         <button class="btn btn-success rounded-pill col-6 ms-2" onclick="buyNow('<?php echo $d['stock_id'] ?>');">Buy Now</button>
                     </div>
                 </div>

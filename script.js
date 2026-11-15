@@ -438,7 +438,7 @@ function decreaseQty() {
         var new_value = parseInt(input.value) - 1;
         input.value = new_value;
     } else {
-        alert("You have reached to the Minimum Quantity...");
+        alert("You have reached to the Minimum Quantity!");
         input.value = 1;
     }
 
@@ -452,7 +452,7 @@ function increaseQty(qty) {
         var new_value = parseInt(input.value) + 1;
         input.value = new_value;
     } else {
-        alert("You have reached to the Maximum Quantity...");
+        alert("You have reached to the Maximum Quantity!");
         input.value = qty;
     }
 
@@ -463,12 +463,172 @@ function checkQtyInput(qty) {
     var input = document.getElementById("qty");
 
     if (input.value < 1 || input.value == "") {
-        alert("You must add 1 or more...");
+        alert("You must add 1 or more!");
         input.value = 1;
     } else if (input.value > qty) {
-        alert("Insufficiant quantity...");
+        alert("Insufficiant quantity!");
         input.value = qty;
     }
+
+}
+
+function addToCart(stock_id) {
+
+    var stockId = stock_id;
+    var qty = document.getElementById("qty");
+
+    if (qty.value > 0) {
+
+        var f = new FormData();
+        f.append("s", stockId);
+        f.append("q", qty.value);
+
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                var response = request.responseText;
+                alert(response);
+                qty.value = "1";
+            }
+        };
+
+        request.open("POST", "addToCartProcess.php", true);
+        request.send(f);
+
+    } else {
+        alert("Please enter valid Qty!");
+    }
+
+}
+
+function addToCartFromSearch(stock_id) {
+
+    var stockId = stock_id;
+    var qty = 1;
+
+    var f = new FormData();
+    f.append("s", stockId);
+    f.append("q", qty);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            alert(response);
+        }
+    };
+
+    request.open("POST", "addToCartProcess.php", true);
+    request.send(f);
+
+}
+
+function loadCart() {
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 & request.status == 200) {
+            var response = request.responseText;
+            document.getElementById("cartBody").innerHTML = response;
+
+        }
+    };
+
+    request.open("POST", "loadCartProcess.php", true);
+    request.send();
+
+}
+
+function decreaseCartQty(x) {
+
+    var cartId = x;
+    var qty = document.getElementById("qty" + x);
+    var newQty = parseInt(qty.value) - 1;
+
+    var f = new FormData();
+    f.append("c", cartId);
+    f.append("q", newQty);
+
+    if (newQty > 0) {
+
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 & request.status == 200) {
+                var response = request.responseText;
+                if (response == "Success") {
+                    qty.value = parseInt(qty.value) - 1;
+                    loadCart();
+                } else {
+                    alert(response);
+                }
+            }
+        };
+
+        request.open("POST", "updateCartQtyProcess.php", true);
+        request.send(f);
+
+    } else {
+        alert("You have reached to the Minimum Quantity!");
+    }
+
+}
+
+function increaseCartQty(x) {
+
+    var cartId = x;
+    var qty = document.getElementById("qty" + x);
+    var newQty = parseInt(qty.value) + 1;
+
+    var f = new FormData();
+    f.append("c", cartId);
+    f.append("q", newQty);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 & request.status == 200) {
+            var response = request.responseText;
+            if (response == "Success") {
+                qty.value = parseInt(qty.value) + 1;
+                loadCart();
+            } else {
+                alert(response);
+            }
+        }
+    };
+
+    request.open("POST", "updateCartQtyProcess.php", true);
+    request.send(f);
+
+}
+
+function removeFromCart(cart_id) {
+
+    var cartId = cart_id;
+
+    if (confirm("Are you sure want Remove this Item?")) {
+
+        var f = new FormData();
+        f.append("c", cartId);
+
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 & request.status == 200) {
+                var response = request.responseText;
+                alert(response);
+                location.reload();
+            }
+        };
+
+        request.open("POST", "removeFromCartProcess.php", true);
+        request.send(f);
+
+    }
+
+}
+
+function checkOut() {
+
+
 
 }
 

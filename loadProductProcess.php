@@ -12,6 +12,7 @@ if (0 != $page) {
 }
 
 $q = "SELECT stock.*, 
+stock.id AS stock_id, 
 product.id as product_id,
 product.name as product_name,
 product.img_path AS product_img_path, 
@@ -58,7 +59,7 @@ if ($num2 == 0) {
                     <p class="badge rounded-pill border border-dark text-dark fs-6"><?php echo $d["category_name"]; ?></p>
                     <p class="card-text fs-5">Rs.<?php echo $d["price"]; ?>.00</p>
                     <div class="d-flex justify-content-center">
-                        <button class="btn btn-dark col-6">Add to Cart</button>
+                        <button class="btn btn-dark col-6" onclick="addToCartFromSearch('<?php echo $d['stock_id'] ?>');">Add to Cart</button>
                         <button class="btn btn-success col-6 ms-2">Buy Now</button>
                     </div>
                 </div>
