@@ -164,7 +164,7 @@ if ($num2 == 0) {
                     <p class="card-text fs-5">Rs.<?php echo $d["price"]; ?>.00</p>
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-dark col-6" onclick="addToCartFromSearch('<?php echo $d['stock_id'] ?>');">Add to Cart</button>
-                        <button class="btn btn-success col-6 ms-2">Buy Now</button>
+                        <button class="btn btn-success col-6 ms-2" onclick="buyNowFromSearch('<?php echo $d['stock_id'] ?>');">Buy Now</button>
                     </div>
                 </div>
             </div>

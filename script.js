@@ -504,7 +504,7 @@ function addToCart(stock_id) {
 function addToCartFromSearch(stock_id) {
 
     var stockId = stock_id;
-    var qty = 1;
+    var qty = "1";
 
     var f = new FormData();
     f.append("s", stockId);
@@ -628,7 +628,123 @@ function removeFromCart(cart_id) {
 
 function checkOut() {
 
+    var f = new FormData();
+    f.append("cart", true);
 
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+
+            var payment = JSON.parse(response);
+            doCheckout(payment, "checkoutProcess.php");
+        }
+    }
+
+    request.open("POST", "paymentProcess.php", true);
+    request.send(f);
+
+}
+
+function doCheckout(payment, path) {
+
+    payhere.onCompleted = function onCompleted(orderId) {
+
+        console.log("Payment completed. OrderID:" + orderId);
+
+        var f = new FormData();
+        f.append("payment", JSON.stringify(payment));
+
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 & request.status == 200) {
+                var response = request.responseText;
+                var order = JSON.parse(response);
+
+                if (order.resp == "Success") {
+                    console.log("Order completed with ID: " + order.order_id);
+                    window.location = "invoice.php?orderId=" + order.order_id;
+                } else {
+                    alert(response);
+                }
+            }
+        };
+
+        request.open("POST", path, true);
+        request.send(f);
+
+    };
+
+    payhere.onDismissed = function onDismissed() {
+        console.log("Payment dismissed");
+    };
+
+    payhere.onError = function onError(error) {
+        console.log("Error:" + error);
+        alert("Error:" + error);
+    };
+
+    payhere.startPayment(payment);
+
+}
+
+function buyNow(stock_id) {
+
+    var stockId = stock_id;
+    var qty = document.getElementById("qty");
+
+    if (qty.value > 0) {
+
+        var f = new FormData();
+        f.append("cart", false);
+        f.append("stockId", stockId);
+        f.append("qty", qty.value);
+
+        var request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                var response = request.responseText;
+
+                var payment = JSON.parse(response);
+                payment.stock_id = stockId;
+                payment.qty = qty.value;
+                doCheckout(payment, "buyNowProcess.php");
+            }
+        }
+
+        request.open("POST", "paymentProcess.php", true);
+        request.send(f);
+
+    } else {
+        alert("Please enter valid Quantity!");
+    }
+
+}
+
+function buyNowFromSearch(stock_id) {
+
+    var stockId = stock_id;
+    var qty = "1";
+
+    var f = new FormData();
+    f.append("cart", false);
+    f.append("stockId", stockId);
+    f.append("qty", qty);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+
+            var payment = JSON.parse(response);
+            payment.stock_id = stockId;
+            payment.qty = qty;
+            doCheckout(payment, "buyNowProcess.php");
+        }
+    }
+
+    request.open("POST", "paymentProcess.php", true);
+    request.send(f);
 
 }
 
