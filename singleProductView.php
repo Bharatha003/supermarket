@@ -93,6 +93,7 @@ if (isset($stockId)) {
 
                 <?php
                 $q2 = "SELECT stock.*, 
+                    stock.id AS stock_id,
                     product.id AS product_id,
                     product.name AS product_name,
                     product.img_path AS product_img_path, 
@@ -131,8 +132,8 @@ if (isset($stockId)) {
                                     <p class="badge rounded-pill border border-dark text-dark fs-6"><?php echo $d2["category_name"]; ?></p>
                                     <p class="card-text fs-5">Rs.<?php echo $d2["price"]; ?>.00</p>
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn btn-dark col-6">Add to Cart</button>
-                                        <button class="btn btn-success col-6 ms-2">Buy Now</button>
+                                        <button class="btn btn-dark col-6" onclick="addToCartFromSearch('<?php echo $d2['stock_id'] ?>');">Add to Cart</button>
+                                        <button class="btn btn-success col-6 ms-2" onclick="buyNowFromSearch('<?php echo $d['stock_id'] ?>');">Buy Now</button>
                                     </div>
                                 </div>
                             </div>

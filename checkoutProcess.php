@@ -40,7 +40,7 @@ if (isset($_POST["payment"])) {
         $d2 = $rs2->fetch_assoc();
 
         $newQty = $d2["stock_qty"] - $d["cart_qty"];
-        Database::iud("UPDATE `stock` SET `qty`='" . $newQty . "' WHERE `id`='" . $d["stock_stock_id"] . "'");
+        Database::iud("UPDATE `stock` SET `qty`='" . $newQty . "' WHERE `id`='" . $d["cart_stock_id"] . "'");
     }
 
     Database::iud("DELETE FROM `cart` WHERE `user_id`='" . $user["id"] . "'");

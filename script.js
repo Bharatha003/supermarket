@@ -659,11 +659,13 @@ function doCheckout(payment, path) {
         request.onreadystatechange = function () {
             if (request.readyState == 4 & request.status == 200) {
                 var response = request.responseText;
+                console.log(response);
                 var order = JSON.parse(response);
-
                 if (order.resp == "Success") {
                     console.log("Order completed with ID: " + order.order_id);
-                    window.location = "invoice.php?orderId=" + order.order_id;
+                    if (confirm("Do you want a Invoice?")) {
+                        window.location = "invoice.php?orderId=" + order.order_id;
+                    }
                 } else {
                     alert(response);
                 }
@@ -745,6 +747,17 @@ function buyNowFromSearch(stock_id) {
 
     request.open("POST", "paymentProcess.php", true);
     request.send(f);
+
+}
+
+function printInvoice() {
+
+    var restorepage = document.body.innerHTML;
+    var page = document.getElementById("page").innerHTML;
+
+    document.body.innerHTML = page;
+    window.print();
+    document.body.innerHTML = restorepage;
 
 }
 
