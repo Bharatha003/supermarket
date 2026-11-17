@@ -16,7 +16,7 @@
         <div class="col-12 text-md-start">
             <div class="row text-start">
 
-                <div class="col-lg-3 col-md-5 col-sm-12 offset-md-1 mx-auto mt-3 px-3">
+                <div class="col-lg-3 col-md-7 col-sm-12 offset-md-1 mx-auto mt-3 px-3">
                     <h3 class="mb-4" style="font-family: latoBold;"><img src="Resources/Img/Supermarket Icon.ico" class="icon"
                             style="height: 40px; width: 40px;" alt=""> Supermarket</h3>
                     <hr class="col-3">
@@ -30,7 +30,7 @@
                 </div>
 
 
-                <div class="col-lg-2 col-md-5 col-sm-12 offset-md-1 mx-auto mt-4 px-3">
+                <div class="col-lg-2 col-md-7 col-sm-12 offset-md-1 mx-auto mt-4 px-3">
                     <div class="widgets_container widget_menu">
                         <h5 style="font-family: latoBold;">More Information</h5>
                         <hr class="col-4">
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-5 col-sm-12 offset-md-1 mx-auto mt-4 px-3">
+                <div class="col-lg-3 col-md-7 col-sm-12 offset-md-1 mx-auto mt-4 px-3">
 
                     <h5 class="mb-4" style="font-family: latoBold;">Contact Us</h5>
                     <hr class="col-2">

@@ -761,8 +761,6 @@ function printInvoice() {
 
 }
 
-
-
 function adminSignIn() {
 
     var adminUn = document.getElementById("adminUn");
@@ -809,5 +807,78 @@ function showPasswordAdminSignIn() {
 
 }
 
+function loadMostSoldChart() {
+
+    const ctx = document.getElementById('msChart');
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+
+            var data = JSON.parse(response);
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: ' Sold Items',
+                        data: data.data,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        }
+    };
+
+    request.open("POST", "loadMostSoldChartProcess.php", true);
+    request.send();
+
+}
+
+function loadLowStockChart() {
+
+    const ctx = document.getElementById('lsChart');
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+
+            var data = JSON.parse(response);
+            new Chart(ctx, {
+                type: 'polarArea',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: ' Products Left',
+                        data: data.data,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+        }
+    };
+
+    request.open("POST", "loadLowStockChartProcess.php", true);
+    request.send();
+
+}
 
 
