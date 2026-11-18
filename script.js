@@ -881,4 +881,74 @@ function loadLowStockChart() {
 
 }
 
+function loadUser(x) {
+
+    var page = x;
+    var resultBox = document.getElementById("tb");
+
+    var f = new FormData();
+    f.append("p", page);
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 & request.status == 200) {
+            var response = request.responseText;
+            resultBox.innerHTML = "";
+            resultBox.innerHTML = response;
+        }
+    };
+
+    request.open("POST", "loadUserProcess.php", true);
+    request.send(f);
+
+}
+
+function searchUser(x) {
+
+    var page = x;
+    var User = document.getElementById("uid");
+    var resultBox = document.getElementById("tb");
+
+    var f = new FormData();
+    f.append("ut", User.value);
+    f.append("pg", page);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 & request.status == 200) {
+            var response = request.responseText;
+            resultBox.innerHTML = "";
+            resultBox.innerHTML = response;
+        }
+    };
+
+    request.open("POST", "searchUserProcess.php", true);
+    request.send(f);
+
+}
+
+function updateUserStatus(user_id) {
+
+    var userId = user_id;
+
+    var f = new FormData();
+    f.append("userId", userId);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            console.log(response);
+            if (response == "Success") {
+                loadUser(0);
+            }
+        }
+    }
+
+    request.open("POST", "updateUserStatusProcess.php", true);
+    request.send(f);
+
+}
+
 
