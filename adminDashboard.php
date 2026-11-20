@@ -30,25 +30,30 @@ if (isset($_SESSION["a"])) {
         $Total_Sellings = 0;
         $Total_Earnings = 0;
 
-        $rs = Database::search("SELECT 
-            order_item.qty AS order_item_qty, 
-            order_history.amount AS order_history_amount,
-            user.id AS user_id
-            FROM `order_item` 
-            INNER JOIN `stock` ON `order_item`.`stock_id` =  `stock`.`id` 
-            INNER JOIN `order_history` ON `order_item`.`order_history_id` = `order_history`.`id`
-            INNER JOIN `user` ON `order_history`.`user_id` = `user`.`id`");
+        $rs = Database::search("SELECT COUNT(user.id) AS user_count
+            FROM `user`");
 
         $num = $rs->num_rows;
 
         for ($i = 0; $i < $num; $i++) {
             $d = $rs->fetch_assoc();
+        }
 
-            $Total_Users = $Total_Users + $d["user_id"];
+        $rs2 = Database::search("SELECT order_item.*,
+            order_item.qty AS order_item_qty, 
+            order_history.amount AS order_history_amount
+            FROM `order_item` 
+            INNER JOIN `stock` ON `order_item`.`stock_id` =  `stock`.`id` 
+            INNER JOIN `order_history` ON `order_item`.`order_history_id` = `order_history`.`id`");
 
-            $Total_Sellings = $Total_Sellings + $d["order_item_qty"];
+        $num2 = $rs2->num_rows;
 
-            $Total_Earnings = $Total_Earnings + $d["order_history_amount"];
+        for ($i = 0; $i < $num2; $i++) {
+            $d2 = $rs2->fetch_assoc();
+
+            $Total_Sellings = $Total_Sellings + $d2["order_item_qty"];
+
+            $Total_Earnings = $Total_Earnings + $d2["order_history_amount"];
         }
         ?>
 
@@ -56,7 +61,7 @@ if (isset($_SESSION["a"])) {
         <div class="row gap-3 justify-content-center my-3">
             <div class="col-3 alert alert-success border border-2 border-success rounded-4 text-center">
                 <h4 class="fw-bold">Total Users</h4>
-                <h5><?php echo $Total_Users ?></h5>
+                <h5><?php echo $d["user_count"] ?></h5>
             </div>
             <div class="col-3 alert alert-dark border border-2 border-dark rounded-4 text-center">
                 <h4 class="fw-bold">Total Sellings</h4>

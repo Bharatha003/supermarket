@@ -17,7 +17,7 @@ if (empty($_FILES["pimg"])) {
     }
 
     $path = "Resources/ProfileImg//" . uniqid() . ".png";
-    move_uploaded_file($$_FILES["pimg"]["tmp_name"], $path);
+    move_uploaded_file($_FILES["pimg"]["tmp_name"], $path);
 
     Database::iud("UPDATE `user` SET `img_path` = '" . $path . "' WHERE `id` = '" . $user["id"] . "'");
     echo ($path);

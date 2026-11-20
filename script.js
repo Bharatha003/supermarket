@@ -267,6 +267,23 @@ function clearFilter() {
 
 }
 
+function loadCategory() {
+
+    var category = document.getElementById("category");
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            category.innerHTML = response;
+        }
+    }
+
+    request.open("GET", "loadCategory.php", true);
+    request.send();
+
+}
+
 function advSearchProduct(x) {
 
     var page = x;
@@ -939,7 +956,6 @@ function updateUserStatus(user_id) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
-            console.log(response);
             if (response == "Success") {
                 loadUser(0);
             }
@@ -952,3 +968,124 @@ function updateUserStatus(user_id) {
 }
 
 
+function loadBrand() {
+
+    var category = document.getElementById("category").value;
+    var brand = document.getElementById("brand");
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            brand.innerHTML = response;
+        }
+    }
+
+    request.open("GET", "loadBrand.php?c=" + category, true);
+    request.send();
+
+}
+
+function addNewCategory() {
+
+    var newCategory = document.getElementById("newcategory");
+
+    var f = new FormData();
+    f.append("nc", newCategory.value);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            alert(response);
+            loadCategory();
+            newCategory.value = "";
+        }
+    }
+
+    request.open("POST", "addNewCategoryProcess.php", true);
+    request.send(f);
+
+}
+
+var bm;
+
+function showCHBModal() {
+
+    var chbModal = document.getElementById("chbModal");
+    var modalCategory = document.getElementById("modalCategory");
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            bm = new bootstrap.Modal(chbModal);
+            bm.show();
+            modalCategory.innerHTML = response;
+        }
+    }
+
+    request.open("GET", "loadCategory.php", true);
+    request.send();
+
+}
+
+function addNewBrand() {
+
+    var newBrand = document.getElementById("newbrand");
+    var modalCategory = document.getElementById("modalCategory");
+
+    var f = new FormData();
+    f.append("nb", newBrand.value);
+    f.append("mc", modalCategory.value);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            bm.hide();
+            alert(response);
+            newBrand.value = "";
+        }
+    }
+
+    request.open("POST", "addNewBrandProcess.php", true);
+    request.send(f);
+
+}
+
+function regProduct() {
+
+    var name = document.getElementById("pname");
+    var img = document.getElementById("file");
+    var category = document.getElementById("category");
+    var brand = document.getElementById("brand");
+    var description = document.getElementById("desc");
+
+    var f = new FormData();
+    f.append("pn", name.value);
+    f.append("pimg", img.files[0]);
+    f.append("c", category.value);
+    f.append("b", brand.value);
+    f.append("d", description.value);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            if (response == "empty") {
+                alert("Please select a Image!");
+            } else {
+                console.log(response);
+                alert(response);
+                if (response == "Success") {
+                    window.location = "adminStock.php";
+                }
+            }
+        }
+    }
+
+    request.open("POST", "registerProductProcess.php", true);
+    request.send(f);
+
+}

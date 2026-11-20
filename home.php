@@ -16,7 +16,7 @@ require "connection.php";
     <link rel="icon" href="Resources/Img/Supermarket Icon.ico" />
 </head>
 
-<body class="body" onload="loadProduct(0);">
+<body class="body" onload="loadProduct(0); loadCategory();">
 
     <!-- Header -->
     <?php include "header.php"; ?>
@@ -37,7 +37,7 @@ require "connection.php";
             <div class="row col-12">
 
                 <!-- Advanced Search Box  -->
-                <div class="container d-flex justify-content-center mt-3">
+                <div class="container d-flex justify-content-center mb-4">
                     <div class="col-8 mt-3">
                         <input type="text" class="form-control border-2 border-success rounded-pill shadow-lg" placeholder="Search..." id="text">
                     </div>
@@ -49,20 +49,6 @@ require "connection.php";
                 <div class="col-6 ms-auto">
                     <label for="category" class="form-label fw-bold">Category</label>
                     <select name="color" class="form-select" id="category">
-                        <option value="0">Select Category</option>
-
-                        <?php
-                        $rs = Database::search("SELECT * FROM `category`");
-                        $num = $rs->num_rows;
-
-                        for ($i = 0; $i < $num; $i++) {
-                            $d = $rs->fetch_assoc();
-                        ?>
-
-                            <option value="<?php echo $d['id']; ?>"><?php echo $d['name']; ?></option>
-                        <?php
-                        }
-                        ?>
 
                     </select>
                 </div>
@@ -75,13 +61,13 @@ require "connection.php";
                         <option value="0">Select Brand</option>
 
                         <?php
-                        $rs2 = Database::search("SELECT * FROM `brand`");
-                        $num2 = $rs2->num_rows;
-                        for ($i = 0; $i < $num2; $i++) {
-                            $d2 = $rs2->fetch_assoc();
+                        $rs = Database::search("SELECT * FROM `brand`");
+                        $num = $rs->num_rows;
+                        for ($i = 0; $i < $num; $i++) {
+                            $d = $rs->fetch_assoc();
                         ?>
 
-                            <option value="<?php echo $d2['id']; ?>"><?php echo $d2['name']; ?></option>
+                            <option value="<?php echo $d['id']; ?>"><?php echo $d['name']; ?></option>
                         <?php
                         }
                         ?>
@@ -180,7 +166,7 @@ require "connection.php";
     <!--Carousel-->
 
     <!-- Load Product  -->
-    <div class="row col-11 mx-auto" id="pid">
+    <div class="row col-10 mx-auto" id="pid">
 
     </div>
     <!-- Load Product  -->

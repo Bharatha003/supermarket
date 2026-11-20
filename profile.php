@@ -27,7 +27,7 @@ if (isset($_SESSION["u"])) {
         <?php include "header.php"; ?>
         <!-- Header  -->
 
-        <div class="container mt-5">
+        <div class="container mt-3 mb-3">
             <div class="row">
 
                 <!-- Profile Picture  -->
@@ -71,7 +71,7 @@ if (isset($_SESSION["u"])) {
                         </div>
                         <div class="col-6">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" placeholder="Username" value="<?php echo isset($d["username"]) ? $d["username"] : ''; ?>" disabled />
+                            <input type="text" class="form-control" placeholder="Username" value="<?php echo isset($d["username"]) ? $d["username"] : ''; ?>" id="username" disabled />
                         </div>
 
                         <div class="col-5">

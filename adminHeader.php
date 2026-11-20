@@ -57,11 +57,11 @@
                             </li>
 
                             <li class="nav-item me-5">
-                                <a class="nav-link active" aria-current="page" href="adminProduct.php"><i class="bi bi-database-fill-gear fs-3" title="Product Management"></i></a>
+                                <a class="nav-link active" aria-current="page" href="adminProduct.php"><i class="bi bi-file-earmark-text-fill fs-3" title="Product Registration"></i></a>
                             </li>
 
                             <li class="nav-item me-5">
-                                <a class="nav-link active fs-5" aria-current="page" href="adminStock.php"><i class="bi bi-house-gear-fill fs-3" title="Stock Management"></i></a>
+                                <a class="nav-link active fs-5" aria-current="page" href="adminStock.php"><i class="bi bi-database-fill-gear fs-3" title="Stock Management"></i></a>
                             </li>
 
                             <li class="nav-item me-5">

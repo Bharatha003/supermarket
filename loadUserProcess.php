@@ -35,8 +35,16 @@ $rs2 = Database::search($q2);
 $num2 = $rs2->num_rows;
 
 if ($num2 == 0) {
-    //Empty Users Message
-    echo ("No Users found!");
+?>
+
+    <!--Empty Search Message-->
+    <div class="alert alert-danger border border-danger d-flex flex-column justify-content-center align-items-center rounded-4 mt-3" role="alert">
+        <h5><i class="bi bi-exclamation-circle fs-5"></i> No Users Found.</h5>
+        <p>We're Sorry, We cannot find any matches for your search term...</p>
+    </div>
+    <!--Empty Search Message-->
+
+<?php
 } else {
 ?>
 
