@@ -115,5 +115,5 @@ if (isset($_SESSION["a"])) {
 <?php
 } else {
     echo ("You are not a Valid Admin!");
-    header("location:signin.php");
+    header("location:home.php");
 }

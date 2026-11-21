@@ -33,14 +33,14 @@ if (isset($_SESSION["a"])) {
                 <!-- Product Name -->
                 <div class="col-6">
                     <label class="form-label fw-bold" for="pname">Product Name</label>
-                    <input id="pname" type="text" class="form-control">
+                    <input id="pname" type="text" class="form-control" required>
                 </div>
                 <!-- Product Name -->
 
                 <!-- Product Image -->
                 <div class="col-6">
                     <label class="form-label fw-bold" for="file">Upload Image</label>
-                    <input type="file" max="1" class="form-control" id="file">
+                    <input type="file" max="1" class="form-control" id="file" required>
                 </div>
                 <!-- Product Image -->
 
@@ -52,7 +52,7 @@ if (isset($_SESSION["a"])) {
                 <div class="col-6 ms-auto">
 
                     <label for="category" class="form-label fw-bold">Category</label>
-                    <select name="category" class="form-select" id="category" onchange="loadBrand();">
+                    <select name="category" class="form-select" id="category" onchange="loadBrand();" required>
 
                     </select>
 
@@ -69,7 +69,7 @@ if (isset($_SESSION["a"])) {
                 <!-- Brand -->
                 <div class="col-6 ms-auto">
                     <label for="brand" class="form-label fw-bold">Brand</label>
-                    <select name="brand" class="form-select" id="brand">
+                    <select name="brand" class="form-select" id="brand" required>
                         <option value="0">Select Category First...</option>
 
                     </select>
@@ -135,6 +135,6 @@ if (isset($_SESSION["a"])) {
 <?php
 } else {
     echo ("You are not a Valid Admin");
-    header("location:signin.php");
+    header("location:home.php");
 }
 ?>

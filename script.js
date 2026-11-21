@@ -1076,7 +1076,6 @@ function regProduct() {
             if (response == "empty") {
                 alert("Please select a Image!");
             } else {
-                console.log(response);
                 alert(response);
                 if (response == "Success") {
                     window.location = "adminStock.php";
@@ -1086,6 +1085,61 @@ function regProduct() {
     }
 
     request.open("POST", "registerProductProcess.php", true);
+    request.send(f);
+
+}
+
+function loadCurrentStock() {
+
+    var product = document.getElementById("selectProduct");
+    var currentQty = document.getElementById("csq");
+    var price = document.getElementById("unitPrice");
+
+    var f = new FormData();
+    f.append("sp", product.value);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+
+            if (response == "empty") {
+                currentQty.innerHTML = "0";
+                price.value = "";
+            } else {
+                var currentStock = JSON.parse(response);
+                currentQty.innerHTML = currentStock.qty;
+                price.value = currentStock.unitPrice;
+            }
+        }
+    }
+
+    request.open("POST", "loadCurrentStockProcess.php", true);
+    request.send(f);
+
+}
+
+function updateStock() {
+
+    var product = document.getElementById("selectProduct");
+    var qty = document.getElementById("qty");
+    var price = document.getElementById("unitPrice");
+
+    var f = new FormData();
+    f.append("sp", product.value);
+    f.append("qty", qty.value);
+    f.append("up", price.value);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            var response = request.responseText;
+            alert(response);
+            location.reload();
+        }
+    }
+
+    request.open("POST", "updateStockProcess.php", true);
     request.send(f);
 
 }
