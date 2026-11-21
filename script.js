@@ -767,14 +767,14 @@ function buyNowFromSearch(stock_id) {
 
 }
 
-function printInvoice() {
+function printDiv() {
 
-    var restorepage = document.body.innerHTML;
-    var page = document.getElementById("page").innerHTML;
+    var originalContent = document.body.innerHTML;
+    var printArea = document.getElementById("printArea").innerHTML;
 
-    document.body.innerHTML = page;
+    document.body.innerHTML = printArea;
     window.print();
-    document.body.innerHTML = restorepage;
+    document.body.innerHTML = originalContent;
 
 }
 
@@ -967,7 +967,6 @@ function updateUserStatus(user_id) {
 
 }
 
-
 function loadBrand() {
 
     var category = document.getElementById("category").value;
@@ -1107,6 +1106,8 @@ function loadCurrentStock() {
                 currentQty.innerHTML = "0";
                 price.value = "";
             } else {
+
+                //Get JSON and pass the values
                 var currentStock = JSON.parse(response);
                 currentQty.innerHTML = currentStock.qty;
                 price.value = currentStock.unitPrice;

@@ -31,10 +31,12 @@ if ($num > 0) {
     <body class="body">
 
         <div class="col-11 btn-toolbar justify-content-end mt-5">
-            <button class="btn btn-danger me-2"><i class="bi bi-printer-fill" onclick="printInvoice();"></i> Print</button>
+            <a href="orderHistory.php"><button class="btn btn-dark me-2"><i class="bi bi-arrow-left-circle-fill"></i> Back</button></a>
+            <button class="btn btn-danger me-2"><i class="bi bi-printer-fill" onclick="printDiv();"></i> Print</button>
         </div>
 
-        <div class="container bg-white shadow rounded-4 p-3 mt-3 mb-5" id="page">
+        <!-- Print Area -->
+        <div class="container bg-white shadow rounded-4 p-3 mt-3 mb-5" id="printArea">
             <div class="border border-3 border-success bg-white p-5 rounded-4">
 
                 <div class="col-12 bg-success rounded-4 px-3 mb-2">
@@ -141,6 +143,7 @@ if ($num > 0) {
 
             </div>
         </div>
+        <!-- Print Area -->
 
         <script src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

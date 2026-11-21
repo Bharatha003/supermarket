@@ -13,10 +13,13 @@ if (empty($productId)) {
     $d = $rs->fetch_assoc();
 
     if ($num == 1) {
+
+        // Add Qty and Price to Array
         $currentStock = array();
         $currentStock["qty"] = $d["qty"];
         $currentStock["unitPrice"] = $d["price"];
 
+        //Convert to JSON
         echo json_encode($currentStock);
     }
 }
