@@ -26,7 +26,8 @@ OR `user`.`fname` LIKE '%$userText%'
 OR `user`.`lname` LIKE '%$userText%' 
 OR `user`.`email` LIKE '%$userText%' 
 OR `user`.`mobile` LIKE '%$userText%' 
-OR `user_type`.`type` LIKE '%$userText%' ";
+OR `user_type`.`type` LIKE '%$userText%' 
+ORDER BY `user`.`id` ASC";
 
 $rs = Database::search($q);
 $num = $rs->num_rows;
@@ -41,8 +42,16 @@ $rs2 = Database::search($q2);
 $num2 = $rs2->num_rows;
 
 if ($num2 == 0) {
-    //Empty Users Message
-    echo ("No Users found!");
+?>
+
+    <!--Empty User Search Message-->
+    <div class="alert alert-danger border border-danger d-flex flex-column justify-content-center align-items-center rounded-4 mt-3" role="alert">
+        <h5><i class="bi bi-exclamation-circle fs-5"></i> No Users Found.</h5>
+        <p>We're Sorry, We cannot find any matches for your search term...</p>
+    </div>
+    <!--Empty User Search Message-->
+
+<?php
 } else {
 ?>
 
@@ -74,7 +83,7 @@ if ($num2 == 0) {
                     <td><?php echo $d["user_email"] ?></td>
                     <td><?php echo $d["user_mobile"] ?></td>
                     <td><?php echo $d["user_type_type"] ?></td>
-                    <td><?php echo $d["user_status"] == 1 ? "Active" : "Deactive" ?></td>
+                    <td><?php echo $d["user_status"] == 1 ? "Active" : "Inactive" ?></td>
                     <?php
                     if ($d["user_status"] == 1) {
                     ?>

@@ -26,7 +26,7 @@ $num = $rs->num_rows;
 if ($num > 0) {
 ?>
 
-    <div class="col-10 mx-auto mt-1">
+    <div class="col-lg-10 col-md-12 mx-auto mt-1">
         <h3 class="fw-bold mb-4">Shopping Cart</h3>
     </div>
 
@@ -39,19 +39,19 @@ if ($num > 0) {
     ?>
 
         <!--Cart Items  -->
-        <div class="col-10 mx-auto border border-2 border-success bg-white rounded-4 p-3 mb-3 d-flex justify-content-between">
+        <div class="col-lg-10 col-md-12 mx-auto border border-2 border-success bg-white rounded-4 p-3 mb-3 d-flex justify-content-between">
 
-            <div class="d-flex align-items-center col-5">
-                <a href="singleProductView.php?s=<?php echo $d["product_id"] ?>"><img src="<?php echo $d["product_img_path"] ?>" class="rounded-4" width="200px" /></a>
-                <div class="col-8 ms-3">
+            <div class="d-flex align-items-center col-lg-5 col-md-6">
+                <a href="singleProductView.php?s=<?php echo $d["product_id"] ?>"><img src="<?php echo $d["product_img_path"] ?>" class="rounded-4 my-auto" width="200px" /></a>
+                <div class="col-lg-8 col-md-6 ms-3">
                     <h4 class="fw-bold"><?php echo $d["product_name"] ?></h4>
-                    <h6 class="col-6 bg-dark text-light text-center rounded-pill mt-2"><?php echo $d["category_name"]; ?></h6>
+                    <h6 class="col-lg-6 col-md-8 bg-dark text-light text-center rounded-pill mt-2"><?php echo $d["category_name"]; ?></h6>
                     <br />
                     <h5 class="">Rs.<?php echo $d["product_price"] ?>.00</h5>
                 </div>
             </div>
 
-            <div class="col-2 d-flex align-items-center">
+            <div class="d-flex col-2 align-items-center">
                 <div class="input-group rounded-4">
                     <button class="btn btn-dark" type="button" onclick="decreaseCartQty(<?php echo $d['cart_id'] ?>);"><i class="bi bi-dash-circle fs-6"></i></button>
                     <input type="number" id="qty<?php echo $d['cart_id'] ?>" class="form-control border border-dark text-center" value="<?php echo $d["cart_qty"] ?>" aria-label="Example text with two button addons" disabled>
@@ -59,7 +59,7 @@ if ($num > 0) {
                 </div>
             </div>
 
-            <div class="d-flex align-items-center">
+            <div class="d-flex col-2 align-items-center">
                 <h4>Total: Rs.<?php echo $total ?>.00</h4>
             </div>
 
@@ -74,16 +74,16 @@ if ($num > 0) {
     }
     ?>
 
-    <div class="col-10 mx-auto mt-4">
+    <div class="col-lg-10 col-md-12 mx-auto mt-4">
         <hr />
     </div>
 
     <!-- Checkout -->
-    <div class="col-11 d-flex flex-column align-items-end">
+    <div class="col-lg-11 col-md-12 d-flex flex-column align-items-end">
         <h5>Number of Items: <?php echo $num ?></h5>
         <h5>Delivery Fee: Rs.500.00</h5>
         <h4 class="fw-bold">Net Total: Rs.<?php echo ($netTotal + 500) ?>.00</h4>
-        <button class="btn btn-success rounded-pill col-3 mt-3 mb-4" onclick="checkOut();">CHECKOUT</button>
+        <button class="btn btn-success rounded-pill col-lg-3 col-md-4 mt-3 mb-4" onclick="checkOut();">CHECKOUT</button>
     </div>
     <!-- Checkout -->
 

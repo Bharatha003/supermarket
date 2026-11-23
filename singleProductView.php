@@ -47,7 +47,7 @@ if (isset($stockId)) {
         <div class="body">
 
             <!-- Product View -->
-            <div class="col-8 row shadow-lg p-4 bg-white rounded-4 mx-auto my-4">
+            <div class="col-lg-8 col-md-11 row shadow-lg p-4 bg-white rounded-4 mx-auto my-4">
 
                 <!-- Product Image -->
                 <div class="col-6">
@@ -58,10 +58,10 @@ if (isset($stockId)) {
                 <!-- Product Details -->
                 <div class="col-6">
                     <h3 class="fw-bold"><?php echo $d["product_name"]; ?></h3>
-                    <h6 class="col-4 bg-dark text-light text-center rounded-pill mt-2"><?php echo $d["category_name"]; ?></h6>
+                    <h6 class="col-lg-4 col-md-6 bg-dark text-light text-center rounded-pill mt-2"><?php echo $d["category_name"]; ?></h6>
                     <p class="border border-2 p-3 rounded-4 mt-4"><?php echo $d["product_description"] ? $d["product_description"] : "No Description available for this Product"; ?></p>
                     <h4 class="mt-4">Rs.<?php echo $d["price"]; ?>.00</h4>
-                    <div class="col-4">
+                    <div class="col-lg-4 col-md-6">
                         <div class="input-group rounded-4 mt-4">
                             <button class="btn btn-dark" type="button" onclick="decreaseQty();"><i class="bi bi-dash-circle fs-6"></i></button>
                             <input type="text" class="form-control border border-dark text-center" value="1" id="qty" onkeyup='checkQtyInput(<?php echo $d["qty"]; ?>)' aria-label="Example text with two button addons">
@@ -87,8 +87,8 @@ if (isset($stockId)) {
             <!-- Product View -->
 
             <!-- Related Products -->
-            <div class="col-8 row shadow-lg p-4 bg-white rounded-4 mx-auto my-4">
-                <h5 class="fw-bold">Related Products</h5>
+            <div class="col-lg-8 col-md-11 row shadow-lg p-4 bg-white rounded-4 mx-auto my-4">
+                <h4 class="fw-bold">Related Products</h4>
                 <hr />
 
                 <?php
@@ -124,7 +124,7 @@ if (isset($stockId)) {
                     ?>
 
                         <!-- Card  -->
-                        <div class="d-flex justify-content-center col-3 mt-3">
+                        <div class="d-flex justify-content-center col-lg-3 col-md-4 mt-3">
                             <div class="card border border-2 border-success rounded-4" style="width: 300px">
                                 <a href="singleProductView.php?s=<?php echo $d2["product_id"] ?>"><img src="<?php echo $d2["product_img_path"]; ?>" class="card-img-top mt-2" alt="<?php echo $d2["product_name"]; ?>"></a>
                                 <div class="card-body">

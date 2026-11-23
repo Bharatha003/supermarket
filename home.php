@@ -33,15 +33,15 @@ require "connection.php";
 
     <!-- Advance Search  -->
     <div class="d-none" id="filterId">
-        <div class="border border-2 border-success rounded-4 mt-4 p-5 col-10 offset-1">
+        <div class="border border-2 border-success rounded-4 mt-4 mb-4 p-5 col-10 offset-1">
             <div class="row col-12">
 
                 <!-- Advanced Search Box  -->
                 <div class="container d-flex justify-content-center mb-4">
-                    <div class="col-8 mt-3">
+                    <div class="col-lg-8 col-md-9 mt-3">
                         <input type="text" class="form-control border-2 border-success rounded-pill shadow-lg" placeholder="Search..." id="text">
                     </div>
-                    <button class="btn btn-success border rounded-pill col-1 mt-3 ms-2 shadow-lg" onclick="advSearchProduct(0);">Search</button>
+                    <button class="btn btn-success border rounded-pill col-lg-1 col-md-2 mt-3 ms-2 shadow-lg" onclick="advSearchProduct(0);">Search</button>
                 </div>
                 <!-- Advanced Search Box  -->
 
@@ -170,12 +170,6 @@ require "connection.php";
 
     </div>
     <!-- Load Product  -->
-
-    <!-- Chat  -->
-    <div class="col-11 mx-auto sticky-bottom mb-3">
-        <button class="offset-11 col-1 bg-dark rounded-2 py-3 rounded-pill text-white"><i class="bi bi-chat-right-text fs-3 fw-bold"></i></button>
-    </div>
-    <!-- Chat  -->
 
     <!-- Footer -->
     <?php include "footer.php"; ?>

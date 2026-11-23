@@ -51,7 +51,7 @@ if ($num2 == 0) {
     ?>
 
         <!-- Card  -->
-        <div class="d-flex justify-content-center col-3 mt-3">
+        <div class="d-flex justify-content-center col-lg-3 col-md-4 mt-3">
             <div class="card border border-2 border-success rounded-4" style="width: 300px">
                 <a href="singleProductView.php?s=<?php echo $d["product_id"] ?>"><img src="<?php echo $d["product_img_path"]; ?>" class="card-img-top mt-2" alt="<?php echo $d["product_name"]; ?>"></a>
                 <div class="card-body">

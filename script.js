@@ -911,7 +911,6 @@ function loadUser(x) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 & request.status == 200) {
             var response = request.responseText;
-            resultBox.innerHTML = "";
             resultBox.innerHTML = response;
         }
     };
@@ -935,7 +934,6 @@ function searchUser(x) {
     request.onreadystatechange = function () {
         if (request.readyState == 4 & request.status == 200) {
             var response = request.responseText;
-            resultBox.innerHTML = "";
             resultBox.innerHTML = response;
         }
     };
@@ -1007,7 +1005,7 @@ function addNewCategory() {
 
 }
 
-var bm;
+var bmChb;
 
 function showCHBModal() {
 
@@ -1018,8 +1016,8 @@ function showCHBModal() {
     request.onreadystatechange = function () {
         if (request.readyState == 4 && request.status == 200) {
             var response = request.responseText;
-            bm = new bootstrap.Modal(chbModal);
-            bm.show();
+            bmChb = new bootstrap.Modal(chbModal);
+            bmChb.show();
             modalCategory.innerHTML = response;
         }
     }

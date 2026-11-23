@@ -23,7 +23,7 @@ if (isset($_SESSION["a"])) {
         <?php include "adminHeader.php"; ?>
         <!-- Admin Header -->
 
-        <div class="col-10 mx-auto mt-3">
+        <div class="col-lg-10 col-md-12 mx-auto mt-3">
 
             <h3 class="text-center fw-bold">User Management</h3>
 
@@ -34,7 +34,7 @@ if (isset($_SESSION["a"])) {
             <!-- User Search -->
 
             <!-- User Details -->
-            <div class="mt-3" id="tb">
+            <div class="table-responsive mt-3" id="tb">
 
             </div>
             <!-- User Details -->

@@ -76,7 +76,7 @@ if ($num2 == 0) {
                     <td><?php echo $d["user_email"] ?></td>
                     <td><?php echo $d["user_mobile"] ?></td>
                     <td><?php echo $d["user_type_type"] ?></td>
-                    <td><?php echo $d["user_status"] == 1 ? "Active" : "Deactive" ?></td>
+                    <td><?php echo $d["user_status"] == 1 ? "Active" : "Inactive" ?></td>
                     <?php
                     if ($d["user_status"] == 1) {
                     ?>
